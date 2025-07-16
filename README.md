@@ -1,75 +1,79 @@
-<<<<<<< HEAD
-# Anyone-AI-Sprint1
-=======
-# Sprint project 01
-> E-Commerce Data Pipeline
+# E-commerce Analytics Pipeline
 
-Hi! this is the first of several projects we're going to be working on during this course.
+This project implements an end-to-end ELT (Extract, Load, Transform) data pipeline to analyze e-commerce transactions and delivery performance in Brazil between 2016 and 2018. The goal is to provide actionable insights on revenue generation and logistics efficiency for a major e-commerce platform in Latam.
 
-You will be expected to finish this on your own, but you can use the available channels on Discord to ask questions and help others. Please read the entire notebook before starting, this will give you a better idea of what you need to accomplish.
+## 🚀 Project Overview
 
-## The Business problem
+The business team requested the Data Science department to analyze two key aspects:
 
-You are working for one of the largest E-commerce sites in Latam and they requested the Data Science team to analyze company data to understand better their performance in specific metrics during the years 2016-2018.
+- **Revenue**: total income per year, top and bottom product categories, revenue by state.
+- **Delivery**: delays, differences between estimated vs. actual delivery dates, correlation with public holidays.
 
-They are two main areas they want to explore, those are **Revenue** and *Delivery*.
+This project integrates real-world datasets from multiple sources, processes them using Python and SQL, stores them in SQLite, and visualizes results with Python libraries.
 
-Basically, they would like to understand how much revenue by year they got, which were the most and less popular product categories, and the revenue by state. On the other hand, it's also important to know how well the company is delivering the products sold in time and form to their users. For example, seeing how much takes to deliver a package depends on the month and the difference between the estimated delivery date and the real one.
+## 📊 Data Sources
 
-## About the data
+- **E-commerce dataset**: Public dataset from Olist Store with over 100k anonymized orders made in Brazil (2016–2018).
+- **Public Holidays API**: [`https://date.nager.at`](https://date.nager.at) — used to analyze delivery delays during holidays.
 
-You will consume and use data from two sources.
+## 🛠️ Technologies Used
 
-The first one is a Brazilian e-commerce public dataset of orders made at the Olist Store, provided as CSVs files. This is real commercial data, that has been anonymized. The dataset has information on 100k orders from 2016 to 2018 made at multiple marketplaces in Brazil. Its features allow viewing orders from multiple dimensions: from order status, price, payment, and freight performance to customer location, product attributes and finally reviews written by customers. You will find an image showing the database schema at `images/data_schema.png`. To get the dataset please download it from this [link](https://drive.google.com/file/d/1HIy4LNNQESuXUj-u_mNJTCGCRrCeSbo-/view?usp=share_link), extract the `dataset` folder from the `.zip` file and place it into the root project folder. See `ASSIGNMENT.md`, section **Project Structure** to validate you've placed the dataset as it's needed.
+- **Python**: Main programming language
+- **Pandas**: Data manipulation from CSVs
+- **Requests**: API consumption
+- **SQLite**: Local database engine
+- **SQL**: Data loading and querying
+- **Matplotlib / Seaborn**: Data visualization
+- **Jupyter Notebooks**: Interactive reporting
+- **Black**: Code formatting
+- **Pytest**: Unit testing
 
-The second source is a public API: https://date.nager.at. You will use it to retrieve information about Brazil's Public Holidays and correlate that with certain metrics about the delivery of products.
+##  Project Structure
+.
+├── dataset/ # CSV files from Olist
+├── notebooks/ # Jupyter notebooks with analysis
+├── src/ # Python scripts for ETL pipeline
+├── tests/ # Unit tests
+├── requirements.txt
+├── README.md
+└── images/ # ER diagram and figures
 
-## Technical aspects
+bash
+Copiar
+Editar
 
-Because the team knows the data will come from different sources and formats, also, probably you will have to provide these kinds of reports on a monthly or annual basis. They decided to build a data pipeline (ELT) they can execute from time to time to produce the results.
+##  Installation
 
-The technologies involved are:
-- Python as the main programming language
-- Pandas for consuming data from CSVs files
-- Requests for querying the public holidays API
-- SQLite as a database engine
-- SQL as the main language for storing, manipulating, and retrieving data in our Data Warehouse
-- Matplotlib and Seaborn for the visualizations
-- Jupyter notebooks to make the report an interactive way
+It is recommended to use a virtual environment:
 
-## Instalation
+```bash
+python -m venv venv
+source venv/bin/activate  # or venv\Scripts\activate on Windows
+pip install -r requirements.txt
+🧪 Running Tests
+To verify the integrity of the code, run:
 
-A `requirements.txt` file is provided with all the needed Python libraries for running this project. For installing the dependencies just run:
+bash
+Copiar
+Editar
+pytest tests/
+Running the Pipeline
+Place the unzipped dataset in the dataset/ directory.
 
-```console
-$ pip install -r requirements.txt
-```
+Launch the main notebook or run the scripts in src/ to extract, load, and transform the data.
 
-*Note:* We encourage you to install those inside a virtual environment.
+Visualizations and insights are available in the notebooks/ section.
 
-## Code Style
+Code Style
+This project uses Black for code formatting:
 
-Following a style guide keeps the code's aesthetics clean and improves readability, making contributions and code reviews easier. Automated Python code formatters make sure your codebase stays in a consistent style without any manual work on your end. If adhering to a specific style of coding is important to you, employing an automated to do that job is the obvious thing to do. This avoids bike-shedding on nitpicks during code reviews, saving you an enormous amount of time overall.
+bash
+Copiar
+Editar
+black --line-length=88 .
+📈 Sample Insights
+Revenue trends by year and state
 
-We use [Black](https://black.readthedocs.io/) for automated code formatting in this project, you can run it with:
+Top/bottom product categories
 
-```console
-$ black --line-length=88 .
-```
-
-Wanna read more about Python code style and good practices? Please see:
-- [The Hitchhiker’s Guide to Python: Code Style](https://docs.python-guide.org/writing/style/)
-- [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
-
-## Tests
-
-We provide unit tests along with the project that you can run and check from your side the code meets the minimum requirements of correctness needed to approve. To run just execute:
-
-```console
-$ pytest tests/
-```
-
-If you want to learn more about testing Python code, please read:
-- [Effective Python Testing With Pytest](https://realpython.com/pytest-python-testing/)
-- [The Hitchhiker’s Guide to Python: Testing Your Code](https://docs.python-guide.org/writing/tests/)
->>>>>>> 5167cd15 (Subiendo Sprint 1 a GitHub)
+Delivery delay patterns and holiday impact
